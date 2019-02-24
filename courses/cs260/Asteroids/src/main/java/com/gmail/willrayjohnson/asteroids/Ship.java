@@ -1,4 +1,4 @@
-package edu.truman.johnsonw;
+package com.gmail.willrayjohnson.asteroids;
 
 import java.awt.Color;
 /**
@@ -15,19 +15,16 @@ import java.awt.event.KeyEvent;
  * 
  * @author William Ray Johnson
  */
-public class Ship extends BaseVectorShape
-{
+public class Ship extends BaseVectorShape {
    private int topShipSpeed;
-   private int[] newShipX =
-   { -6, -5, -4, -3, 3, 4, 5, 6, 6, 4, 3, 3, 0, -3, -3, -4, -6 };
-   private int[] newShipY =
-   { 6, 7, 7, 6, 6, 7, 7, 6, -1, -3, -1, -5, -8, -5, -1, -3, -1 };
+   private int[] newShipX = { -6, -5, -4, -3, 3, 4, 5, 6, 6, 4, 3, 3, 0, -3, -3, -4, -6 };
+   private int[] newShipY = { 6, 7, 7, 6, 6, 7, 7, 6, -1, -3, -1, -5, -8, -5, -1, -3,
+         -1 };
 
    /**
     * Constucts a yellow ship.
     */
-   public Ship()
-   {
+   public Ship() {
       setShape(new Polygon(newShipX, newShipY, newShipX.length));
       setAlive(true);
       setColor(Color.YELLOW);
@@ -38,19 +35,16 @@ public class Ship extends BaseVectorShape
     * 
     * @return The bounds as a Rectangle
     */
-   public Rectangle getBounds()
-   {
+   public Rectangle getBounds() {
       return new Rectangle((int) getX() - 6, (int) getY() - 6, 12, 12);
    }
 
    /**
     * Sets top speed of the ship.
     * 
-    * @param speed
-    *           The top speed
+    * @param speed The top speed
     */
-   public void setTopShipSpeed(int speed)
-   {
+   public void setTopShipSpeed(int speed) {
       topShipSpeed = speed;
    }
 
@@ -59,21 +53,17 @@ public class Ship extends BaseVectorShape
     * 
     * @return Top speed of ship
     */
-   public int getTopShipSpeed()
-   {
+   public int getTopShipSpeed() {
       return topShipSpeed;
    }
 
    /**
     * Moves ship based on what key is passed to ship.
     * 
-    * @param keyPressed
-    *           A key that is currently pressed
+    * @param keyPressed A key that is currently pressed
     */
-   public void moveShip(int keyPressed)
-   {
-      switch (keyPressed)
-      {
+   public void moveShip(int keyPressed) {
+      switch (keyPressed) {
 
          case KeyEvent.VK_LEFT:
             incFaceAngle(-5);
@@ -90,9 +80,8 @@ public class Ship extends BaseVectorShape
          case KeyEvent.VK_UP:
             setMoveAngle(getFaceAngle() - 90);
             if (calcSpeed() < topShipSpeed
-               && calcNextSpeed(calcAngleMoveX(getMoveAngle()) * 0.1,
-                  calcAngleMoveY(getMoveAngle()) * 0.1) < topShipSpeed)
-            {
+                  && calcNextSpeed(calcAngleMoveX(getMoveAngle()) * 0.1,
+                        calcAngleMoveY(getMoveAngle()) * 0.1) < topShipSpeed) {
                incVelX(calcAngleMoveX(getMoveAngle()) * 0.1);
                incVelY(calcAngleMoveY(getMoveAngle()) * 0.1);
             }
@@ -103,28 +92,21 @@ public class Ship extends BaseVectorShape
    /**
     * Updates the position of the ship.
     * 
-    * @param height
-    *           Height of component
-    * @param width
-    *           Width of component
+    * @param height Height of component
+    * @param width Width of component
     */
-   public void updateShip(int height, int width)
-   {
+   public void updateShip(int height, int width) {
       incX(getVelX());
-      if (getX() < -10)
-      {
+      if (getX() < -10) {
          setX(width + 10);
-      } else if (getX() > width + 10)
-      {
+      } else if (getX() > width + 10) {
          setX(-10);
       }
 
       incY(getVelY());
-      if (getY() < -10)
-      {
+      if (getY() < -10) {
          setY(height + 10);
-      } else if (getY() > height + 10)
-      {
+      } else if (getY() > height + 10) {
          setY(-10);
       }
    }

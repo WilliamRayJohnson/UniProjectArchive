@@ -1,4 +1,4 @@
-package edu.truman.johnsonw;
+package com.gmail.willrayjohnson.asteroids;
 
 /**
  * Adapted by Jon Beck from Beginning Java 5 Game Programming
@@ -15,8 +15,7 @@ import java.awt.Color;
  * @author William Ray Johnson
  *
  */
-public class BaseVectorShape
-{
+public class BaseVectorShape {
    private Shape shape;
    private Color color;
    private boolean alive;
@@ -33,8 +32,7 @@ public class BaseVectorShape
    /**
     * Constructs a BaseVecotrShape.
     */
-   public BaseVectorShape()
-   {
+   public BaseVectorShape() {
       shape = null;
       alive = false;
       exploding = false;
@@ -52,19 +50,16 @@ public class BaseVectorShape
     * 
     * @return shape
     */
-   public Shape getShape()
-   {
+   public Shape getShape() {
       return shape;
    }
 
    /**
     * Sets the color of the shape.
     * 
-    * @param color
-    *           The desired color
+    * @param color The desired color
     */
-   public void setColor(Color color)
-   {
+   public void setColor(Color color) {
       this.color = color;
    }
 
@@ -73,8 +68,7 @@ public class BaseVectorShape
     * 
     * @return color
     */
-   public Color getColor()
-   {
+   public Color getColor() {
       return color;
    }
 
@@ -83,19 +77,16 @@ public class BaseVectorShape
     * 
     * @return alive
     */
-   public boolean isAlive()
-   {
+   public boolean isAlive() {
       return alive;
    }
 
    /**
     * Set the shape to explode
     * 
-    * @param e
-    *           Exploding or not
+    * @param e Exploding or not
     */
-   public void setExploding(boolean e)
-   {
+   public void setExploding(boolean e) {
       exploding = e;
    }
 
@@ -104,8 +95,7 @@ public class BaseVectorShape
     * 
     * @return exploding
     */
-   public boolean isExploding()
-   {
+   public boolean isExploding() {
       return exploding;
    }
 
@@ -114,25 +104,22 @@ public class BaseVectorShape
     * 
     * @return explosion interations
     */
-   public int getExplosionCounter()
-   {
+   public int getExplosionCounter() {
       return explosionCounter;
    }
 
    /**
-    * Increments explosion counter to keep track of how many iterations
-    * explosion has gone through.
+    * Increments explosion counter to keep track of how many iterations explosion has gone
+    * through.
     */
-   public void incExplosionCounter()
-   {
+   public void incExplosionCounter() {
       explosionCounter++;
    }
 
    /**
     * Resets explosion counter when explosion is finished.
     */
-   public void resetExplosionCounter()
-   {
+   public void resetExplosionCounter() {
       explosionCounter = 0;
    }
 
@@ -141,8 +128,7 @@ public class BaseVectorShape
     * 
     * @return x position
     */
-   public double getX()
-   {
+   public double getX() {
       return x;
    }
 
@@ -151,8 +137,7 @@ public class BaseVectorShape
     * 
     * @return y position
     */
-   public double getY()
-   {
+   public double getY() {
       return y;
    }
 
@@ -161,8 +146,7 @@ public class BaseVectorShape
     * 
     * @return x velocity
     */
-   public double getVelX()
-   {
+   public double getVelX() {
       return velX;
    }
 
@@ -171,8 +155,7 @@ public class BaseVectorShape
     * 
     * @return y velocity
     */
-   public double getVelY()
-   {
+   public double getVelY() {
       return velY;
    }
 
@@ -181,8 +164,7 @@ public class BaseVectorShape
     * 
     * @return Move angle
     */
-   public double getMoveAngle()
-   {
+   public double getMoveAngle() {
       return moveAngle;
    }
 
@@ -191,19 +173,16 @@ public class BaseVectorShape
     * 
     * @return Face angle
     */
-   public double getFaceAngle()
-   {
+   public double getFaceAngle() {
       return faceAngle;
    }
 
    /**
     * Sets the shape the shape will take on.
     * 
-    * @param shape
-    *           the shape's shape
+    * @param shape the shape's shape
     */
-   public void setShape(Shape shape)
-   {
+   public void setShape(Shape shape) {
       this.shape = shape;
    }
 
@@ -212,151 +191,124 @@ public class BaseVectorShape
     * 
     * @param alive
     */
-   public void setAlive(boolean alive)
-   {
+   public void setAlive(boolean alive) {
       this.alive = alive;
    }
 
    /**
     * Sets the value of x.
     * 
-    * @param x
-    *           New position
+    * @param x New position
     */
-   public void setX(double x)
-   {
+   public void setX(double x) {
       this.x = x;
    }
 
    /**
     * Increments x by inputed velocity.
     * 
-    * @param i
-    *           Velocity
+    * @param i Velocity
     */
-   public void incX(double i)
-   {
+   public void incX(double i) {
       x += i;
    }
 
    /**
     * Sets the value of y.
     * 
-    * @param y
-    *           New position
+    * @param y New position
     */
-   public void setY(double y)
-   {
+   public void setY(double y) {
       this.y = y;
    }
 
    /**
     * Increments y by inputed velocity.
     * 
-    * @param i
-    *           Velocity
+    * @param i Velocity
     */
-   public void incY(double i)
-   {
+   public void incY(double i) {
       y += i;
    }
 
    /**
     * Sets the velocity of the X direction.
     * 
-    * @param velX
-    *           New velocity
+    * @param velX New velocity
     */
-   public void setVelX(double velX)
-   {
+   public void setVelX(double velX) {
       this.velX = velX;
    }
 
    /**
     * Increments velocity of the X direction.
     * 
-    * @param i
-    *           Velocity added
+    * @param i Velocity added
     */
-   public void incVelX(double i)
-   {
+   public void incVelX(double i) {
       velX += i;
    }
 
    /**
     * Sets the velocity of the Y direction.
     * 
-    * @param velY
-    *           New velocity
+    * @param velY New velocity
     */
-   public void setVelY(double velY)
-   {
+   public void setVelY(double velY) {
       this.velY = velY;
    }
 
    /**
     * Increments velocity of the Y direction.
     * 
-    * @param i
-    *           Velocity added
+    * @param i Velocity added
     */
-   public void incVelY(double i)
-   {
+   public void incVelY(double i) {
       velY += i;
    }
 
    /**
     * Sets the face angle of shape.
     * 
-    * @param angle
-    *           New face angle
+    * @param angle New face angle
     */
-   public void setFaceAngle(double angle)
-   {
+   public void setFaceAngle(double angle) {
       faceAngle = angle;
    }
 
    /**
     * Increments face angle by inputed degree.
     * 
-    * @param i
-    *           Degree
+    * @param i Degree
     */
-   public void incFaceAngle(double i)
-   {
+   public void incFaceAngle(double i) {
       faceAngle += i;
    }
 
    /**
     * Sets the move angle of the shape.
     * 
-    * @param angle
-    *           New move angle
+    * @param angle New move angle
     */
-   public void setMoveAngle(double angle)
-   {
+   public void setMoveAngle(double angle) {
       moveAngle = angle;
    }
 
    /**
     * Increments move angle by inputed degree.
     * 
-    * @param i
-    *           Degree
+    * @param i Degree
     */
-   public void incMoveAngle(double i)
-   {
+   public void incMoveAngle(double i) {
       moveAngle += i;
    }
 
    /**
     * Sets up a new explosion animation.
     * 
-    * @param a
-    *           New animation
+    * @param a New animation
     */
-   public void setExplosionAnimation(Animation a)
-   {
+   public void setExplosionAnimation(Animation a) {
       explosionAnimation = a;
    }
 
@@ -365,34 +317,28 @@ public class BaseVectorShape
     * 
     * @return explosion animation
     */
-   public Animation getExplosionAnimation()
-   {
+   public Animation getExplosionAnimation() {
       return explosionAnimation;
    }
 
    /**
-    * Calculates the "speed" of the shape by calcuating the distance between the
-    * current location and after coordinates are incremented.
+    * Calculates the "speed" of the shape by calcuating the distance between the current
+    * location and after coordinates are incremented.
     * 
     * @return distance or "speed" of shape
     */
-   public double calcSpeed()
-   {
-      return Math
-         .sqrt(Math.pow((x - (x + velX)), 2) + Math.pow((y - (y + velY)), 2));
+   public double calcSpeed() {
+      return Math.sqrt(Math.pow((x - (x + velX)), 2) + Math.pow((y - (y + velY)), 2));
    }
 
    /**
     * Calculates the speed the shape will have after current iteration.
     * 
-    * @param nextVelX
-    *           The next x velocity
-    * @param nextVelY
-    *           The next y velocity
+    * @param nextVelX The next x velocity
+    * @param nextVelY The next y velocity
     * @return Next speed
     */
-   public double calcNextSpeed(double nextVelX, double nextVelY)
-   {
+   public double calcNextSpeed(double nextVelX, double nextVelY) {
       nextVelX += velX;
       nextVelY += velY;
 
@@ -400,18 +346,16 @@ public class BaseVectorShape
       double nextY = y + nextVelY;
 
       return Math.sqrt(Math.pow((nextX - (nextX + nextVelX)), 2)
-         + Math.pow((nextY - (nextY + nextVelY)), 2));
+            + Math.pow((nextY - (nextY + nextVelY)), 2));
    }
 
    /**
     * calculate X movement value based on direction angle.
     * 
-    * @param Angle
-    *           shape is moving
+    * @param Angle shape is moving
     * @return x movement
     */
-   public double calcAngleMoveX(double angle)
-   {
+   public double calcAngleMoveX(double angle) {
       return (Math.cos(angle * Math.PI / 180));
    }
 
@@ -421,8 +365,7 @@ public class BaseVectorShape
     * @angle Angle shape is moving
     * @return y movement
     */
-   public double calcAngleMoveY(double angle)
-   {
+   public double calcAngleMoveY(double angle) {
       return (Math.sin(angle * Math.PI / 180));
    }
 

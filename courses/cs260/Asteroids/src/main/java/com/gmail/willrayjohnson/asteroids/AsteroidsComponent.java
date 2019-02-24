@@ -1,4 +1,4 @@
-package edu.truman.johnsonw;
+package com.gmail.willrayjohnson.asteroids;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -22,8 +22,7 @@ import javax.swing.Timer;
  * @author William Ray Johnson
  *
  */
-public class AsteroidsComponent extends JComponent implements KeyListener
-{
+public class AsteroidsComponent extends JComponent implements KeyListener {
    private Graphics2D g2d;
    private ArrayList<Integer> keysPressed;
    private boolean showBounds;
@@ -44,12 +43,13 @@ public class AsteroidsComponent extends JComponent implements KeyListener
 
    private static final int EXPLOSION_DELAY = 2;
    private static final int FIRE_RATE = 150;
+   private static final String SHIP_EXPLOSION_IMAGE = "/META-INF/shipExplosion.png";
+   private static final String ASTEROID_EXPLOSION_IMAGE = "/META-INF/asteroidExplosion.png";
 
    /**
     * Constructs the asteroid game component.
     */
-   AsteroidsComponent()
-   {
+   AsteroidsComponent() {
       g2d = null;
       keysPressed = new ArrayList<Integer>();
       showBounds = false;
@@ -58,18 +58,17 @@ public class AsteroidsComponent extends JComponent implements KeyListener
       ship = new Ship();
       gameOver = false;
       winner = false;
-      bulletFireRateTimer = new Timer(FIRE_RATE, new ActionListener()
-      {
-         public void actionPerformed(ActionEvent event)
-         {
+      bulletFireRateTimer = new Timer(FIRE_RATE, new ActionListener() {
+         public void actionPerformed(ActionEvent event) {
             if (!canFire)
                canFire = true;
          }
       });
       bulletFireRateTimer.start();
       Toolkit tk = Toolkit.getDefaultToolkit();
-      shipExplosionImage = tk.createImage("shipExplosion.png");
-      asteroidExplosionImage = tk.createImage("asteroidExplosion.png");
+      shipExplosionImage = tk.createImage(getClass().getResource(SHIP_EXPLOSION_IMAGE));
+      asteroidExplosionImage = tk
+            .createImage(getClass().getResource(ASTEROID_EXPLOSION_IMAGE));
       identity = new AffineTransform();
       rand = new Random();
    }
@@ -77,27 +76,21 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Initialized the game with various parameters.
     * 
-    * @param numberOfAsteroids
-    *           Number of asteroids in game
-    * @param topShipSpeed
-    *           Top speed of ship
-    * @param lives
-    *           Number of lives
+    * @param numberOfAsteroids Number of asteroids in game
+    * @param topShipSpeed Top speed of ship
+    * @param lives Number of lives
     */
-   public void initializeGame(int numberOfAsteroids, int topShipSpeed,
-      int lives)
-   {
+   public void initializeGame(int numberOfAsteroids, int topShipSpeed, int lives) {
       this.numberOfAsteroids = numberOfAsteroids;
       this.lives = lives;
       ship.setTopShipSpeed(topShipSpeed);
 
       ship.setX(Asteroids.FRAMEWIDTH / 2);
       ship.setY(Asteroids.FRAMEHEIGHT / 2);
-      ship.setExplosionAnimation(new Animation(shipExplosionImage, 23, 5, 64,
-         64, EXPLOSION_DELAY, this));
+      ship.setExplosionAnimation(
+            new Animation(shipExplosionImage, 23, 5, 64, 64, EXPLOSION_DELAY, this));
 
-      for (int n = 0; n < this.numberOfAsteroids; n++)
-      {
+      for (int n = 0; n < this.numberOfAsteroids; n++) {
          Asteroid a = new Asteroid();
          a.setX((double) rand.nextInt(Asteroids.FRAMEWIDTH) + 20);
          a.setY((double) rand.nextInt(Asteroids.FRAMEHEIGHT) + 20);
@@ -105,8 +98,8 @@ public class AsteroidsComponent extends JComponent implements KeyListener
          double ang = a.getMoveAngle() - 90;
          a.setVelX(calcAngleMoveX(ang));
          a.setVelY(calcAngleMoveY(ang));
-         a.setExplosionAnimation(new Animation(asteroidExplosionImage, 17, 5,
-            96, 96, EXPLOSION_DELAY, this));
+         a.setExplosionAnimation(new Animation(asteroidExplosionImage, 17, 5, 96, 96,
+               EXPLOSION_DELAY, this));
          ast.add(a);
       }
 
@@ -119,15 +112,11 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Resets game to inital values with new parameters.
     * 
-    * @param numberOfAsteroids
-    *           Number of asteroids in game
-    * @param topShipSpeed
-    *           Top speed of ship
-    * @param lives
-    *           Number of lives
+    * @param numberOfAsteroids Number of asteroids in game
+    * @param topShipSpeed Top speed of ship
+    * @param lives Number of lives
     */
-   public void restartGame(int numberOfAsteroids, int topShipSpeed, int lives)
-   {
+   public void restartGame(int numberOfAsteroids, int topShipSpeed, int lives) {
       this.numberOfAsteroids = numberOfAsteroids;
       this.lives = lives;
       ship.setTopShipSpeed(topShipSpeed);
@@ -145,8 +134,7 @@ public class AsteroidsComponent extends JComponent implements KeyListener
       keysPressed.clear();
       bulletsAL.clear();
 
-      for (int n = 0; n < this.numberOfAsteroids; n++)
-      {
+      for (int n = 0; n < this.numberOfAsteroids; n++) {
          Asteroid a = new Asteroid();
          a.setX((double) rand.nextInt(Asteroids.FRAMEWIDTH) + 20);
          a.setY((double) rand.nextInt(Asteroids.FRAMEHEIGHT) + 20);
@@ -154,8 +142,8 @@ public class AsteroidsComponent extends JComponent implements KeyListener
          double ang = a.getMoveAngle() - 90;
          a.setVelX(calcAngleMoveX(ang));
          a.setVelY(calcAngleMoveY(ang));
-         a.setExplosionAnimation(new Animation(asteroidExplosionImage, 17, 5,
-            96, 96, EXPLOSION_DELAY, this));
+         a.setExplosionAnimation(new Animation(asteroidExplosionImage, 17, 5, 96, 96,
+               EXPLOSION_DELAY, this));
          ast.add(a);
       }
 
@@ -163,8 +151,7 @@ public class AsteroidsComponent extends JComponent implements KeyListener
       requestFocusInWindow();
    }
 
-   public void paintComponent(Graphics g)
-   {
+   public void paintComponent(Graphics g) {
       g2d = (Graphics2D) g;
       g2d.setTransform(identity);
       g2d.setPaint(Color.BLACK);
@@ -183,39 +170,32 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Draw the ship based on it's fields and set flags.
     */
-   public void drawShip()
-   {
-      if (ship.isAlive())
-      {
+   public void drawShip() {
+      if (ship.isAlive()) {
          // draw the ship
          g2d.setTransform(identity);
          g2d.translate(ship.getX(), ship.getY());
          g2d.rotate(Math.toRadians(ship.getFaceAngle()));
          g2d.setColor(ship.getColor());
          g2d.fill(ship.getShape());
-         if (showBounds)
-         {
+         if (showBounds) {
             g2d.setTransform(identity);
             g2d.setColor(Color.BLUE);
             g2d.draw(ship.getBounds());
          }
-      } else if (ship.isExploding())
-      {
+      } else if (ship.isExploding()) {
          ship.getExplosionAnimation().drawFrame(g2d, (int) ship.getX() - 32,
-            (int) ship.getY() - 32);
+               (int) ship.getY() - 32);
          ship.incExplosionCounter();
-         if (ship.getExplosionCounter() >= EXPLOSION_DELAY * 22)
-         {
+         if (ship.getExplosionCounter() >= EXPLOSION_DELAY * 22) {
             ship.setExploding(false);
             ship.resetExplosionCounter();
             ship.setX(Asteroids.FRAMEWIDTH / 2);
             ship.setY(Asteroids.FRAMEHEIGHT / 2);
             ship.setFaceAngle(0);
-            if (lives > 0)
-            {
+            if (lives > 0) {
                ship.setAlive(true);
-            } else
-            {
+            } else {
                gameOver = true;
             }
 
@@ -226,12 +206,9 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Draw the bullets.
     */
-   public void drawBullets()
-   {
-      for (Bullet bullet : bulletsAL)
-      {
-         if (bullet.isAlive())
-         {
+   public void drawBullets() {
+      for (Bullet bullet : bulletsAL) {
+         if (bullet.isAlive()) {
             g2d.setTransform(identity);
             g2d.translate(bullet.getX(), bullet.getY());
             g2d.setColor(bullet.getColor());
@@ -243,35 +220,28 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Draw the asteroids based on its fields and set flags.
     */
-   public void drawAsteroids()
-   {
-      for (Asteroid a : ast)
-      {
-         if (a.isAlive())
-         {
+   public void drawAsteroids() {
+      for (Asteroid a : ast) {
+         if (a.isAlive()) {
             g2d.setTransform(identity);
             g2d.translate(a.getX(), a.getY());
             g2d.rotate(Math.toRadians(a.getMoveAngle()));
             g2d.setColor(a.getColor());
             g2d.fill(a.getShape());
 
-            if (showBounds)
-            {
+            if (showBounds) {
                g2d.setTransform(identity);
                g2d.setColor(Color.BLUE);
                g2d.draw(a.getBounds());
             }
-         } else if (a.isExploding())
-         {
+         } else if (a.isExploding()) {
             a.getExplosionAnimation().drawFrame(g2d, (int) a.getX() - 32,
-               (int) a.getY() - 32);
+                  (int) a.getY() - 32);
             a.incExplosionCounter();
-            if (a.getExplosionCounter() >= EXPLOSION_DELAY * 16)
-            {
+            if (a.getExplosionCounter() >= EXPLOSION_DELAY * 16) {
                a.setExploding(false);
                a.resetExplosionCounter();
-               if (aliveAsteroids == 0)
-               {
+               if (aliveAsteroids == 0) {
                   winner = true;
                }
             }
@@ -282,14 +252,10 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Updates game based on keys pressed and shapes individual update methods.
     */
-   public void gameUpdate()
-   {
-      for (Integer key : keysPressed)
-      {
-         if (ship.isAlive())
-         {
-            switch (key)
-            {
+   public void gameUpdate() {
+      for (Integer key : keysPressed) {
+         if (ship.isAlive()) {
+            switch (key) {
                case KeyEvent.VK_LEFT:
                case KeyEvent.VK_RIGHT:
                case KeyEvent.VK_UP:
@@ -299,10 +265,9 @@ public class AsteroidsComponent extends JComponent implements KeyListener
                case KeyEvent.VK_CONTROL:
                case KeyEvent.VK_ENTER:
                case KeyEvent.VK_SPACE:
-                  if (canFire)
-                  {
+                  if (canFire) {
                      bulletsAL.add(new Bullet(ship.getX(), ship.getY(),
-                        ship.getFaceAngle(), ship.calcSpeed()));
+                           ship.getFaceAngle(), ship.calcSpeed()));
                      canFire = false;
                      bulletFireRateTimer.restart();
                   }
@@ -320,10 +285,8 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Update the bullets based on velocity
     */
-   public void updateBullets()
-   {
-      for (Bullet bullet : bulletsAL)
-      {
+   public void updateBullets() {
+      for (Bullet bullet : bulletsAL) {
          bullet.updateBullet(getSize().height, getSize().width);
       }
    }
@@ -331,10 +294,8 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Update the asteroids based on velocity
     */
-   public void updateAsteroids()
-   {
-      for (Asteroid a : ast)
-      {
+   public void updateAsteroids() {
+      for (Asteroid a : ast) {
          a.updateAsteroid(getSize().height, getSize().width);
       }
    }
@@ -342,18 +303,12 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * Test asteroids for collisions with ship or bullets
     */
-   public void checkCollisions()
-   {
-      for (Asteroid a : ast)
-      {
-         if (a.isAlive())
-         {
-            for (Bullet bullet : bulletsAL)
-            {
-               if (bullet.isAlive())
-               {
-                  if (a.getBounds().contains(bullet.getX(), bullet.getY()))
-                  {
+   public void checkCollisions() {
+      for (Asteroid a : ast) {
+         if (a.isAlive()) {
+            for (Bullet bullet : bulletsAL) {
+               if (bullet.isAlive()) {
+                  if (a.getBounds().contains(bullet.getX(), bullet.getY())) {
                      bullet.setAlive(false);
                      a.setAlive(false);
                      a.setExploding(true);
@@ -363,8 +318,7 @@ public class AsteroidsComponent extends JComponent implements KeyListener
                }
             }
 
-            if (a.getBounds().intersects(ship.getBounds()) && ship.isAlive())
-            {
+            if (a.getBounds().intersects(ship.getBounds()) && ship.isAlive()) {
                ship.setAlive(false);
                ship.setExploding(true);
                ship.setVelX(0);
@@ -375,13 +329,9 @@ public class AsteroidsComponent extends JComponent implements KeyListener
          }
       }
 
-      for (Bullet bullet : bulletsAL)
-      {
-         if (bullet.isAlive())
-         {
-            if (bullet.getBounds().intersects(ship.getBounds())
-               && ship.isAlive())
-            {
+      for (Bullet bullet : bulletsAL) {
+         if (bullet.isAlive()) {
+            if (bullet.getBounds().intersects(ship.getBounds()) && ship.isAlive()) {
                bullet.setAlive(false);
                ship.setAlive(false);
                ship.setExploding(true);
@@ -397,16 +347,14 @@ public class AsteroidsComponent extends JComponent implements KeyListener
    /**
     * calculate X movement value based on direction angle
     */
-   public double calcAngleMoveX(double angle)
-   {
+   public double calcAngleMoveX(double angle) {
       return (Math.cos(angle * Math.PI / 180));
    }
 
    /**
     * calculate Y movement value based on direction angle
     */
-   public double calcAngleMoveY(double angle)
-   {
+   public double calcAngleMoveY(double angle) {
       return (Math.sin(angle * Math.PI / 180));
    }
 
@@ -415,12 +363,10 @@ public class AsteroidsComponent extends JComponent implements KeyListener
     * 
     * @return Currently alive asteroids
     */
-   public int calcAliveAsteroids()
-   {
+   public int calcAliveAsteroids() {
       int aliveAsteroids = 0;
 
-      for (Asteroid a : ast)
-      {
+      for (Asteroid a : ast) {
          if (a.isAlive())
             aliveAsteroids++;
       }
@@ -432,8 +378,7 @@ public class AsteroidsComponent extends JComponent implements KeyListener
     * 
     * @return gameOver
     */
-   public boolean isGameOver()
-   {
+   public boolean isGameOver() {
       return gameOver;
    }
 
@@ -442,22 +387,18 @@ public class AsteroidsComponent extends JComponent implements KeyListener
     * 
     * @return winner
     */
-   public boolean isWinner()
-   {
+   public boolean isWinner() {
       return winner;
    }
 
-   public void keyReleased(KeyEvent k)
-   {
+   public void keyReleased(KeyEvent k) {
       keysPressed.remove(new Integer(k.getKeyCode()));
    }
 
-   public void keyTyped(KeyEvent k)
-   {
+   public void keyTyped(KeyEvent k) {
    }
 
-   public void keyPressed(KeyEvent k)
-   {
+   public void keyPressed(KeyEvent k) {
       if (!keysPressed.contains(new Integer(k.getKeyCode())))
          keysPressed.add(k.getKeyCode());
       if (k.getKeyCode() == KeyEvent.VK_B)

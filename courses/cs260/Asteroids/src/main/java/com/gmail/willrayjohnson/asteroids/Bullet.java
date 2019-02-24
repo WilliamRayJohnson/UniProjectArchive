@@ -1,4 +1,4 @@
-package edu.truman.johnsonw;
+package com.gmail.willrayjohnson.asteroids;
 
 import java.awt.Color;
 
@@ -14,8 +14,7 @@ import java.awt.Rectangle;
  * 
  * @author William Ray Johnson
  */
-public class Bullet extends BaseVectorShape
-{
+public class Bullet extends BaseVectorShape {
    private double bulletSpeed;
 
    public static final int BULLET_SPEED = 6;
@@ -23,18 +22,12 @@ public class Bullet extends BaseVectorShape
    /**
     * Constructs a red bullet based on ships position and speed
     * 
-    * @param shipX
-    *           X coordinate of ship
-    * @param shipY
-    *           Y coordinate of ship
-    * @param shipFaceAngle
-    *           The angle the ship is facing
-    * @param shipSpeed
-    *           Ship Speed
+    * @param shipX X coordinate of ship
+    * @param shipY Y coordinate of ship
+    * @param shipFaceAngle The angle the ship is facing
+    * @param shipSpeed Ship Speed
     */
-   public Bullet(double shipX, double shipY, double shipFaceAngle,
-      double shipSpeed)
-   {
+   public Bullet(double shipX, double shipY, double shipFaceAngle, double shipSpeed) {
       setShape(new Rectangle(-1, 1, 2, 2));
       setAlive(true);
       setMoveAngle(shipFaceAngle - 90);
@@ -47,40 +40,33 @@ public class Bullet extends BaseVectorShape
    }
 
    /**
-    * Sets x to ships x then increments it so the bullet is out of the ship's
-    * bounding box.
+    * Sets x to ships x then increments it so the bullet is out of the ship's bounding
+    * box.
     * 
-    * @param x
-    *           Ship's x position
+    * @param x Ship's x position
     */
-   public void setX(double x)
-   {
+   public void setX(double x) {
       super.setX(x);
       incX(getVelX());
    }
 
    /**
-    * Sets y to ships y then increments it so the bullet is out of the ship's
-    * bounding box.
+    * Sets y to ships y then increments it so the bullet is out of the ship's bounding
+    * box.
     * 
-    * @param y
-    *           Ship's y position
+    * @param y Ship's y position
     */
-   public void setY(double y)
-   {
+   public void setY(double y) {
       super.setY(y);
       incY(getVelY());
    }
 
    /**
-    * Calculates this bullet's speed by adding the ship's speed to the speed of
-    * a bullet
+    * Calculates this bullet's speed by adding the ship's speed to the speed of a bullet
     * 
-    * @param shipSpeed
-    *           The speed of the ship.
+    * @param shipSpeed The speed of the ship.
     */
-   public void setBulletSpeed(double shipSpeed)
-   {
+   public void setBulletSpeed(double shipSpeed) {
       bulletSpeed = shipSpeed + BULLET_SPEED;
    }
 
@@ -89,8 +75,7 @@ public class Bullet extends BaseVectorShape
     * 
     * @return The bounds as a Rectangle
     */
-   public Rectangle getBounds()
-   {
+   public Rectangle getBounds() {
       return new Rectangle((int) getX(), (int) getY(), 2, 2);
    }
 
@@ -98,43 +83,35 @@ public class Bullet extends BaseVectorShape
     * Calculates X velocity by solving for x where x = bulletSpeed *
     * sin(moveAngle)/tan(moveAngle)
     */
-   public void calcVelX()
-   {
+   public void calcVelX() {
       setVelX(bulletSpeed * Math.sin(getMoveAngle() * Math.PI / 180)
-         / Math.tan(getMoveAngle() * Math.PI / 180));
+            / Math.tan(getMoveAngle() * Math.PI / 180));
    }
 
    /**
-    * Calculate Y velocity by solving for y where y = bulletSpeed *
-    * cos(moveAngle) * tan(moveAngle)
+    * Calculate Y velocity by solving for y where y = bulletSpeed * cos(moveAngle) *
+    * tan(moveAngle)
     */
-   public void calcVelY()
-   {
+   public void calcVelY() {
       setVelY(bulletSpeed * Math.cos(getMoveAngle() * Math.PI / 180)
-         * Math.tan(getMoveAngle() * Math.PI / 180));
+            * Math.tan(getMoveAngle() * Math.PI / 180));
    }
 
    /**
     * Updates the position of the bullet.
     * 
-    * @param height
-    *           Height of component
-    * @param width
-    *           Width of component
+    * @param height Height of component
+    * @param width Width of component
     */
-   public void updateBullet(int height, int width)
-   {
-      if (isAlive())
-      {
+   public void updateBullet(int height, int width) {
+      if (isAlive()) {
          incX(getVelX());
-         if (getX() < 0 || getX() > width)
-         {
+         if (getX() < 0 || getX() > width) {
             setAlive(false);
          }
 
          incY(getVelY());
-         if (getY() < 0 || getY() > height)
-         {
+         if (getY() < 0 || getY() > height) {
             setAlive(false);
          }
       }

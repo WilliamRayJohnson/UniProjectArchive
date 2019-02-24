@@ -1,4 +1,4 @@
-package edu.truman.johnsonw;
+package com.gmail.willrayjohnson.asteroids;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -26,8 +26,7 @@ import javax.swing.JButton;
  * 
  * @author William Ray Johnson
  */
-public class Asteroids implements Runnable
-{
+public class Asteroids implements Runnable {
    private Thread gameloop;
    private JPanel gameSetupPanel;
    private JLabel asteroidLabel;
@@ -60,19 +59,17 @@ public class Asteroids implements Runnable
    /**
     * Constructs the Asteroids game
     */
-   public Asteroids()
-   {
+   public Asteroids() {
       game = new AsteroidsComponent();
       gameSetupPanel = new JPanel();
       asteroidLabel = new JLabel("Number of Asteroids");
-      numberOfAsteroidsSlider = new JSlider(JSlider.HORIZONTAL, 1,
-         MAX_ASTEROIDS, MAX_ASTEROIDS / 2);
+      numberOfAsteroidsSlider = new JSlider(JSlider.HORIZONTAL, 1, MAX_ASTEROIDS,
+            MAX_ASTEROIDS / 2);
       shipSpeedLabel = new JLabel("Top Speed of Ship");
       topShipSpeed = new JSlider(JSlider.HORIZONTAL, 1, MAX_TOP_SHIP_SPEED,
-         MAX_TOP_SHIP_SPEED / 2);
+            MAX_TOP_SHIP_SPEED / 2);
       livesLabel = new JLabel("Number of Lives");
-      numberOfLivesSlider = new JSlider(JSlider.HORIZONTAL, 1, MAX_LIVES,
-         MAX_LIVES / 2);
+      numberOfLivesSlider = new JSlider(JSlider.HORIZONTAL, 1, MAX_LIVES, MAX_LIVES / 2);
       startGameButton = new JButton("Start Game");
       gamePanel = new JPanel(new BorderLayout());
       winLosePanel = new JPanel();
@@ -84,33 +81,27 @@ public class Asteroids implements Runnable
       gameRunning = false;
    }
 
-   public static void main(String[] args)
-   {
+   public static void main(String[] args) {
       Asteroids a = new Asteroids();
       a.go();
    }
 
    /**
-    * Creates the GUI and sets up the system for setting up a game and cycling
-    * through the three panels.
+    * Creates the GUI and sets up the system for setting up a game and cycling through the
+    * three panels.
     */
-   public void go()
-   {
+   public void go() {
       gameSetupPanel.setLayout(new BoxLayout(gameSetupPanel, BoxLayout.Y_AXIS));
-      startGameButton.addActionListener(new ActionListener()
-      {
-         public void actionPerformed(ActionEvent event)
-         {
-            if (!gameInitialized)
-            {
+      startGameButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent event) {
+            if (!gameInitialized) {
                game.initializeGame(numberOfAsteroidsSlider.getValue(),
-                  topShipSpeed.getValue(), numberOfLivesSlider.getValue());
+                     topShipSpeed.getValue(), numberOfLivesSlider.getValue());
                gameInitialized = true;
                gameRunning = true;
-            } else
-            {
+            } else {
                game.restartGame(numberOfAsteroidsSlider.getValue(),
-                  topShipSpeed.getValue(), numberOfLivesSlider.getValue());
+                     topShipSpeed.getValue(), numberOfLivesSlider.getValue());
                gameRunning = true;
             }
             NextPanel();
@@ -119,8 +110,7 @@ public class Asteroids implements Runnable
       });
       asteroidLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
       numberOfAsteroidsSlider.setAlignmentX(Component.CENTER_ALIGNMENT);
-      numberOfAsteroidsSlider
-         .setMajorTickSpacing(MAX_ASTEROIDS / MAJOR_TICK_DIVISOR);
+      numberOfAsteroidsSlider.setMajorTickSpacing(MAX_ASTEROIDS / MAJOR_TICK_DIVISOR);
       numberOfAsteroidsSlider.setMinorTickSpacing(1);
       numberOfAsteroidsSlider.setPaintTicks(true);
       numberOfAsteroidsSlider.setPaintLabels(true);
@@ -148,10 +138,8 @@ public class Asteroids implements Runnable
       gamePanel.add(game, BorderLayout.CENTER);
 
       winLosePanel.setLayout(new BoxLayout(winLosePanel, BoxLayout.Y_AXIS));
-      newGameButton.addActionListener(new ActionListener()
-      {
-         public void actionPerformed(ActionEvent event)
-         {
+      newGameButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent event) {
             NextPanel();
          }
       });
@@ -177,22 +165,16 @@ public class Asteroids implements Runnable
    /**
     * thread run event (game loop)
     */
-   @Override
-   public void run()
-   {
+   public void run() {
       Thread t = Thread.currentThread();
-      while (t == gameloop)
-      {
+      while (t == gameloop) {
 
-         try
-         {
-            if (game.isGameOver() && gameRunning)
-            {
+         try {
+            if (game.isGameOver() && gameRunning) {
                winLoseText.setText("Game Over");
                NextPanel();
                gameRunning = false;
-            } else if (game.isWinner() && gameRunning)
-            {
+            } else if (game.isWinner() && gameRunning) {
                winLoseText.setText("You Win!");
                NextPanel();
                gameRunning = false;
@@ -200,8 +182,7 @@ public class Asteroids implements Runnable
                game.gameUpdate();
 
             Thread.sleep(20);
-         } catch (InterruptedException e)
-         {
+         } catch (InterruptedException e) {
             e.printStackTrace();
          }
          game.repaint();
@@ -211,8 +192,7 @@ public class Asteroids implements Runnable
    /**
     * Cycles the main panel to the next panel to be displayed.
     */
-   public void NextPanel()
-   {
+   public void NextPanel() {
       CardLayout cl = (CardLayout) (mainPanel.getLayout());
       cl.next(mainPanel);
    }
