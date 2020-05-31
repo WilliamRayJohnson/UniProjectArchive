@@ -1,0 +1,18 @@
+Lab 5 William Ray Johnson
+1. The subprogram is named Maximum
+It has 3 parameters
+One local variable: Largest
+The output of 1 and 2 is "The maximum of 1 and 2 is 2"
+The output of 10 and 5 is "The maximum of 10 and 5 is 10."
+
+2. Error is "formal parameter "A" is read but never assigned. This means that A exsist but it is not assigned any value. This makes sense 
+since orginially this parameter was getting its assignment as an input for maximum.
+
+3.The output is "The maximum of 4350708 and 2 is 4350708" Since A was made an output, when 1 and 2 are typed in A is not assigned anything.
+Instead the default value of an integer is kept. I am guessing that 4350708 is the maximum number an integer can hold.
+
+4.It says that assignment to "in" mode parameter not allowed. Every procedure needs an output, it is saying this because 
+there is no output parameter.
+
+5. The maximum of MaxX and MaxY is the maximum value of Value1, Value2, Value3, and Value4.
+

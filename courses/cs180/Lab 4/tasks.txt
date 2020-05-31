@@ -1,0 +1,31 @@
+Buy food for the cat
+completed
+1
+Buy food for Joe
+finished
+2
+Watch the ballgame with the cat
+completed
+3
+Get the car's oil changed
+finished 
+2
+Fix the fence
+finished
+7
+Groom the cat
+completed
+3
+Mow the lawn
+finished
+2
+Buy food for the trip
+completed
+1
+Mend Joe's jeans
+finished
+1
+Research the best catnip
+completed
+5
+

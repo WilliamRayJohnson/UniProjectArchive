@@ -1,0 +1,15 @@
+Will Ray Johnson
+Problem 1
+(1) If you enter a name longer than 10 characters, when the sentence is outputed, it will only output the first 10 characters. To modify this one would
+only have to change the 10 where MyName was defined to a larger number.
+(2) Some funny characters appeared after the name and there was white space after it.
+(3) I am guessing since it was not defined how long that particular string would be with that word put in, that string had a length of 10 since it was 
+defined as that earlyer and there where some characters in that string defaultly.
+
+Problem 2
+(1) I believe there is default amount of space an interger takes up. Since the year was not enough characters to fill up that default space, the remaining
+space became whitespace.
+(2) I get an error.
+(3) If you enter a year outside the range you get an error and the program ends.
+
+Problem 3

@@ -1,0 +1,11 @@
+Problem 1
+a) Pay is $390.00
+b) Pay is $400.00
+c) Pay is $415.00
+
+At 41 hours a person will get paided overtime, so 0.5 of their wage will get added to their wage, and they will get paid that for every hour of 
+overtime they work.
+
+Problem 2
+d) IF Months_Worked >= Long_Tenure THEN
+e) Pay := Pay * Wage_Increase;

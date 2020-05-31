@@ -1,0 +1,9 @@
+Problem 1
+1) The program, starting with 12:00 AM, prints every time that occurs a day in ten minute intervals.
+
+Problem 2
+1) The program ask how many task to check, then if they are completed or not. Based on that input the program will run through a text file checking for
+how ever many times the user said and if the task is completed or not. It will output the results with what task needs to be completed and or is completed
+and how many hours it will or did take. Then finally an average of how long it took or will take to do those task.
+
+2)30 lines organized three lines at a time, the first line is the task, the second is the task status, and the last is how long the task took.

@@ -1,0 +1,2 @@
+## Building
+`gnatmake <filename>.adb`

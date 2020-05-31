@@ -1,6 +1,13 @@
 
-# Created by https://www.gitignore.io/api/c++,java,maven,python,eclipse
-# Edit at https://www.gitignore.io/?templates=c++,java,maven,python,eclipse
+# Created by https://www.gitignore.io/api/c++,java,maven,python,eclipse,ada
+# Edit at https://www.gitignore.io/?templates=c++,java,maven,python,eclipse,ada
+
+### Ada ###
+# Object file
+*.o
+
+# Ada Library Information
+*.ali
 
 ### C++ ###
 # Prerequisites
@@ -9,7 +16,6 @@
 # Compiled Object files
 *.slo
 *.lo
-*.o
 *.obj
 
 # Precompiled Headers
@@ -245,6 +251,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# End of https://www.gitignore.io/api/c++,java,maven,python,eclipse
+# End of https://www.gitignore.io/api/c++,java,maven,python,eclipse,ada
+
 
 *.docx
